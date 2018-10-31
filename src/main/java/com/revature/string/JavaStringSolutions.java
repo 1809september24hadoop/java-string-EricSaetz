@@ -113,10 +113,6 @@ public class JavaStringSolutions implements JavaString {
 			array[min]=temp;
 		}
 		
-		for (int n:array) {
-			System.out.print(n + " ");
-		}
-		
 		return new String(array);
 	}
 
