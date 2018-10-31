@@ -11,7 +11,7 @@ public class JavaStringSolutions implements JavaString {
 	public static void main(String args[]) {
 		JavaStringSolutions solutions = new JavaStringSolutions();
 		
-		LOGGER.info(solutions.parseInteger("-4325"));
+		LOGGER.info(solutions.parseInteger("4325"));
 		LOGGER.info(solutions.reverse("Hello World"));
 		solutions.time(new StringBuilder(), new StringBuffer());
 		LOGGER.info(solutions.itContains("Hello World", "World"));
@@ -20,7 +20,9 @@ public class JavaStringSolutions implements JavaString {
 		LOGGER.info(solutions.upperLower("Hello World!"));
 		
 	}
-
+	
+	//Parses a string into a number, can begin with a +/- sign
+	
 	@Override
 	public int parseInteger(String number) throws IllegalArgumentException {
 		if (number==null) {
