@@ -11,7 +11,7 @@ public class JavaStringSolutions implements JavaString {
 	public static void main(String args[]) {
 		JavaStringSolutions solutions = new JavaStringSolutions();
 		
-		LOGGER.info(solutions.parseInteger("4325"));
+		LOGGER.info(solutions.parseInteger("-4325"));
 		LOGGER.info(solutions.reverse("Hello World"));
 		solutions.time(new StringBuilder(), new StringBuffer());
 		LOGGER.info(solutions.itContains("Hello World", "World"));
@@ -23,13 +23,22 @@ public class JavaStringSolutions implements JavaString {
 
 	@Override
 	public int parseInteger(String number) throws IllegalArgumentException {
-		if (number==null || (Integer.parseInt(number)+"").length()!=number.length()) {
-			throw new IllegalArgumentException();
+		if (number==null) {
+			throw new IllegalArgumentException("number cannot be null");
 		}
+		
 		int output = 0;
-		for (int i=0;i<number.length();i++) {
-			output+=(Character.getNumericValue(number.charAt(i)) * (int)Math.pow(10, number.length()-i-1));
+		for (int i=number.length()-1;i>-1;i--) {
+			if (!Character.isDigit(number.charAt(i)) && !(i==0 && (number.charAt(i)=='+' || number.charAt(i)=='-'))) {
+				throw new IllegalArgumentException("string must contain only numbers or +/- at the beggining");
+			}
+			if (i==0 && number.charAt(i)=='-')
+				output*=-1;
+			else if (i!=0 || number.charAt(i)!='+') {
+				output+=(Character.getNumericValue(number.charAt(i)) * (int)Math.pow(10, number.length()-i-1));
+			}
 		}
+		
 		return output;
 	}
 
